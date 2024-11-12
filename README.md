@@ -66,7 +66,7 @@ curl -X GET http://localhost:8080/.well-known/openid-credential-issuer | jq
 
 To get a credential (replace the proof JWT and bearer access token values before testing):
 ```
-curl -d '{"proof":{"proof_type":"jwt", "jwt": "<<insert proof jwt>>" }}' -H "Content-Type: application/json" -H "Authorization: Bearer <<insert bearer token jwt>>" -X POST http://localhost:8080/credential | jq
+curl -d '{"proof":{"proof_type":"jwt","jwt":"eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImRpZDprZXk6ekRuYWVtQ1dIblRDZlhlc1B0R0JqZjFyYXp2UXJYenBjaTFzNVFSTVNrN2c2NTNiYyJ9.eyJpc3MiOiJ1cm46ZmRjOmdvdjp1azp3YWxsZXQiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjgwODAiLCJpYXQiOjE3MzEzOTk0ODcwODcsIm5vbmNlIjoiMzg1YjU4NzAtYjgzNC00N2U2LTk4ZmEtM2IzYjlkZjMxZjI5In0.E4DyZhj2AYM1j3HJE0dJ3WjkJs8uE6XPuxbsXhr8GcdJXU0fR4Ncpho8d0GwhKLmk5GaGIn2LKsTt8DBOfbFbw"}}' -H "Content-Type: application/json" -H "Authorization: Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjJjZWQyMmUyLWMxNWItNGUwMi1hYTVmLTdhMTBhMmVhY2NjNyJ9.eyJzdWIiOiJ1cm46ZmRjOndhbGxldC5hY2NvdW50Lmdvdi51azoyMDI0OkR0UFQ4eC1kcF83M3RubFkzS05UaUNpdHppTjlHRWhlckQxNmJxeE50OWkiLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjMwMDEiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjgwODAiLCJjcmVkZW50aWFsX2lkZW50aWZpZXJzIjpbImJkNjM0YjdlLTRmNDYtNDI2Zi05YzIxLWYyMGZiZjYzMjAzMyJdLCJjX25vbmNlIjoiMzg1YjU4NzAtYjgzNC00N2U2LTk4ZmEtM2IzYjlkZjMxZjI5In0.l1_G2ABotd_lc8hISHji1rhkGJrn-MaO5w9VEefv1JGu48ahseWlMHft42BI_STuEyU-cQlKE8GGqPHpXN68UA" -X POST http://localhost:8080/credential | jq
 ```
 
 To get the DID document:
@@ -82,7 +82,7 @@ curl -X GET http://localhost:8080/.well-known/jwks.json | jq
 #### Reading from the Database
 To check that a credential offer was saved to the table, run:
 
-`aws --endpoint-url=http://localhost:4560 --region eu-west-2 dynamodb query --table-name credential_offer_cache --key-condition-expression "credentialIdentifier = :credentialIdentifier" --expression-attribute-values "{ \":credentialIdentifier\" : { \"S\" : \"e457f329-923c-4eb6-85ca-ee7e04b3e173\" } }"`
+`aws --endpoint-url=http://localhost:4560 --region eu-west-2 dynamodb query --table-name credential_offer_cache --key-condition-expression "credentialIdentifier = :credentialIdentifier" --expression-attribute-values "{ \":credentialIdentifier\" : { \"S\" : \"dbcbe8f2-05d6-4f05-8539-b9a00f5bfee3\" } }"`
 
 replacing the **credentialIdentifier** with the relevant one.
 
